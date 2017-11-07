@@ -11,6 +11,9 @@ import { GalleryComponent } from './components/galleries/gallery/gallery.compone
 import { GalleryViewComponent } from './components/galleries/gallery-view/gallery-view.component';
 import { GalleryStoreComponent } from './components/galleries/gallery-store/gallery-store.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { FilterComponent } from './components/filter/filter.component';
     FilterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    SharedModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
