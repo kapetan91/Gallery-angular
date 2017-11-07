@@ -7,7 +7,7 @@ import { RegisterComponent } from '../components/register/register.component';
 const appRoutes: Routes = [
 	{
 		path: '',
-		redirectTo: '/home',
+		component: HomeComponent,
 		pathMatch: 'full'
 	},
 	{
@@ -19,10 +19,32 @@ const appRoutes: Routes = [
 		path: 'register',
 		component: RegisterComponent,
 		canActivate: [GuestGuard]
-	}
-
-
-]
+	},
+	{
+		path: 'my-galleries',
+		component: HomeComponent,
+		canActivate: [AuthGuard]
+	},
+	{
+		path: 'authors/:id', 
+    	component: HomeComponent, 
+    	canActivate: [AuthGuard	
+	},
+  { 
+    path: 'create', 
+    component: StoreGalleryComponent, 
+    canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'galleries/:id', 
+    component: ShowGalleryComponent 
+  },
+  { 
+    path: 'edit-gallery', 
+    component: StoreGalleryComponent, 
+    canActivate: [AuthGuard]
+  }
+];
 
 @NgModule({
   imports: [

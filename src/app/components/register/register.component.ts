@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { AuthService } from ''
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -10,24 +10,25 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  newUser: any = {};
+  @Output() onSubmit = new EventEmitter<User>();
+
+  private newUser = new User();
 
   constructor(
     private authService: AuthService,
   	private router: Router) { }
 
-  register()
+  register(newUser)
   {
-    this.authService.create(this.newUser)
-      .subscribe(
-          data => {
-              this.authService.success('Registration successful', true);
-              this.router.navigate(['/login']);
-          },
-          (err: HttpErrorResponse) => {
-            alert(`${err.error.error}`);
-          }
-          });
+  this.authService.register(newUser)
+    .subscribe(
+        () => {
+          this.router.navigateByUrl('/');
+        },
+        (err: HttpErrorResponse) => {
+          alert(`${err.error.error}`);
+        }
+    );
   }
   ngOnInit() {
   }
