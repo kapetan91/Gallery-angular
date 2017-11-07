@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { AuthService } from ''
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { AuthService } from '../../service/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-register',

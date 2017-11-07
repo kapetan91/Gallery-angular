@@ -1,4 +1,4 @@
-export class Gallerie {
+export class Gallery {
 	constructor(
 		public id?: number,
 	    public name?: string,

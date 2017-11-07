@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { User } from '../../shared/models/user.model';
+import { User } from '../shared/models/user.model';
 
 @Injectable()
 export class AuthService {
 
 	public isAuthenticated: boolean;
 
+  public user: User[] = [];
+
   constructor(private http: HttpClient) {
-  	this.isAuthenticated = !!window.localstorage.getItem('loginToken');
+  	this.isAuthenticated = !!window.localStorage.getItem('loginToken');
   }
 
   login(email: string, password: string)
@@ -22,7 +24,7 @@ export class AuthService {
   			'password': password
   		})
   		.subscribe(
-  			(data; {token: string}) => {
+  			(data: {token: string}) => {
   				window.localStorage.setItem('loginToken', data.token);
   				this.isAuthenticated = true;
 
@@ -58,6 +60,7 @@ export class AuthService {
               }
             )
     });
+  }
 
   public getRequestHeaders()
   {

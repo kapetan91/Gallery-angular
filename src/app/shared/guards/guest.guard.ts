@@ -14,7 +14,7 @@ export class GuestGuard implements CanActivate {
 		activatedRouteSnapshot: ActivatedRouteSnapshot,
 		routerStateSnapshot: RouterStateSnapshot
 		) {
-		if (this.auth.Serbice.isAuthentificated) {
+		if (this.authService.isAuthenticated) {
 			this.router.navigate(['home']);
 		}
 
