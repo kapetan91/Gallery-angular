@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentStoreComponent implements OnInit {
 
-  constructor() { }
+  public comments: any[] = [];
+  public user = {};
 
-  ngOnInit() {
+  constructor(
+    private commentService: CommentService,
+    private authService: AuthService, 
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit() 
+  {
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.commentService.getComments(id)
+      .subscribe(comments => {
+        this.comments = comments;
+
+    });
+      
+    this.user = this.authService.getUser();
   }
 
 }

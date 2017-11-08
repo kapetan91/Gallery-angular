@@ -1,3 +1,31 @@
-<p>
-  gallery works!
-</p>
+<hr>
+<filter-galleries (searchEvent)="getGalleries($event); clearView();"></filter-galleries> 
+<hr>
+<div class="container marketing">
+	<div class="row"> 
+		<div class="col-lg-4 mt-4" *ngFor="let gallery of galleries">
+	    	<img class="rounded-circle" src="{{ gallery.images[0].image_url }}" width="140" height="140">
+			<div class="mt-4">
+			    <a routerLink="/galleries/{{gallery.id}}">
+			    	{{ gallery.name }}
+			    </a>
+			</div>
+	    	<div class="mt-2">
+		    	<small>
+	    			<a routerLink="/authors/{{gallery.user.id}}">
+	    				{{ gallery.user.first_name }}
+	    			</a>
+	    		</small>
+    		</div>
+    		<div class="mt-2">
+	    		<small>
+	    			{{ gallery.created_at }} 
+	    		</small>
+	    	</div>
+		</div>
+	</div>
+</div>
+<hr>
+<button (click)="getGalleries()" class="btn btn-secondary" *ngIf="!term">Show more</button>
+
+
