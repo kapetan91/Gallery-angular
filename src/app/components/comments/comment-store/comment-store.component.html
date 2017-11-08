@@ -7,7 +7,7 @@
       <span class="comment-info">
         <a  class="comment-user" routerLink="/authors/{{comment.user.id}}"> {{comment.user.first_name}} {{comment.user.last_name}}</a>
         <time>{{comment.created_at }} </time>
-        <button [hidden]="!auth.isAuth ||  authService.isAuthenticated && user.id !== comment.user_id" class="btn btn-outline-danger">Delete</button>
+        <button [hidden]="!authService.isAuthenticated ||  authService.isAuthenticated && user.id !== comment.user_id" class="btn btn-outline-danger">Delete</button>
       </span> 
       <p class="comment-body"> {{comment.body }}</p>
     </li>
@@ -15,4 +15,7 @@
   </ul>
 </div>
 
-<add-comment [hidden]="!authService.isAuthenticated" (addCommentEvent)="addComment($event)"></add-comment>
+
+//<!-- <add-comment [hidden]="!authService.isAuthenticated"
+  (addCommentEvent)="addComment($event)">
+</add-comment> -->

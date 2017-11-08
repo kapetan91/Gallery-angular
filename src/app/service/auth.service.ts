@@ -15,6 +15,11 @@ export class AuthService {
   	this.isAuthenticated = !!window.localStorage.getItem('loginToken');
   }
 
+  public getUser() 
+  {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
   login(email: string, password: string)
   {
   	return new Observable((o: Observer<any>) =>

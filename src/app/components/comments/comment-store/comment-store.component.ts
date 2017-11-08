@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CommentService } from '../../../service/comment.service';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../service/auth.service';
 @Component({
   selector: 'app-comment-store',
   templateUrl: './comment-store.component.html',
@@ -18,8 +20,8 @@ export class CommentStoreComponent implements OnInit {
 
   ngOnInit() 
   {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.commentService.getComments(id)
+    let id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.commentService.gComments(id)
       .subscribe(comments => {
         this.comments = comments;
 

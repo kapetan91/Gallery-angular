@@ -14,6 +14,10 @@ import { FilterComponent } from './components/filter/filter.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { AuthService } from './service/auth.service';
+import { GuestGuard } from './shared/guards/guest.guard';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,9 +36,14 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     FormsModule,
     SharedModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+  AuthService,
+  GuestGuard,
+  AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

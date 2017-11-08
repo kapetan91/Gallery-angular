@@ -1,9 +1,9 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../../service/auth.service';
 import { skip } from 'rxjs/operator/skip';
 import { take } from 'rxjs/operator/take';
 import { Component, OnInit } from '@angular/core';
-import { GalleryService } from '../../service/gallery.service';
+import { GalleryService } from '../../../service/gallery.service';
 
 @Component({
   selector: 'app-gallery',
@@ -22,7 +22,7 @@ export class GalleryComponent implements OnInit {
 
   constructor(
     private galleryService: GalleryService, 
-    private auth: AuthService, 
+    private authService: AuthService, 
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
@@ -55,7 +55,7 @@ export class GalleryComponent implements OnInit {
       id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     }
 
-    this.galleryService.getGalleries(this.term, id)
+    this.galleryService.getGallery()
       .subscribe(data => {
         this.galleries.push(...(data.galleries));
         this.numberOfGalleries = data.count;

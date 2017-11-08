@@ -1,6 +1,6 @@
 <h2>Comments</h2>
 
-<div *ngIf ="comments[]">
+<div *ngIf ="comments.length[0]">
 
 	<ul class="list-group">
 		<li class="list-group-item comment"
@@ -25,6 +25,3 @@
 	</ul>
 </div>
 
-<add-comment [hidden]="!authService.isAuthenticated"
-	(addCommentEvent)="addComment($event)">
-</add-comment>

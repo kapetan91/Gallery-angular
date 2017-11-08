@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Auth Service } from './auth.service';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { Http } from '@angular/http';
 import { Observer, Observable } from 'rxjs';
-
+import { Response } from '@angular/http';
 @Injectable()
 export class CommentService {
 
-	public comments: any[] = [];
+	public comments = [];
 
-  constructor(private httpClient: HttpClient,
+  constructor(private http: Http,
   	private authService: AuthService) { } 
 
-  public comments(cId)
+  public gComments(cId ?)
   {
   	return new Observable((o: Observer<any>) => {
-  		this.http.get(`http://localhost:8000/api/galleries/${Id}comments`)
-  		.subscribe((c:any[]) => {
-  			this.comments = c;
+  		this.http.get(`http://localhost:8000/api/galleries/${cId}comments`)
+  		.subscribe((c: Response) => {
+        console.log(c);
+  			
   			o.next(c);
   			return o.complete();
   		}, (err) => {
@@ -28,7 +29,7 @@ export class CommentService {
   public addComment(comment: Comment, cId)
   {
   	const user = 
-  		this.auth.getUser();
+  		this.authService.getUser();
   		return new Observable((o: Observer<any>) => {
   			this.http.post(`http://localhost:8000/api/comments`, {
   			'body': comment,

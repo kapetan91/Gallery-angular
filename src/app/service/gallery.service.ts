@@ -15,7 +15,7 @@ export class GalleryService {
 	public getGallery()
 	{
 		return new Observable((o: Observer<any>) => {
-			this.http.get('http://localhost:8000/api/all', {
+			this.http.get('http://localhost:8000/galleries', {
         		headers: this.authService.getRequestHeaders(),
         	})
         	.subscribe(
@@ -33,7 +33,7 @@ export class GalleryService {
 	public addGallerie(gallerie: Gallery)
 	{
 		return new Observable((o: Observer<any>) => {
-			this.http.post('http://localhost:8000/api/gallerie', {
+			this.http.post('http://localhost:8000/api/galleries', {
 				'name': gallerie.name,
 				'description': gallerie.description				
 			},

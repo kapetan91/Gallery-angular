@@ -3,22 +3,26 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/all-galleries" routerLinkActive="active">Galleries</a>
       </li>
-      <li class="nav-item" *ngIf ="!auth.isAthentificated">
+      <li class="nav-item" *ngIf ="!authService.isAuthenticated">
         <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
       </li>
-      <li class="nav-item" *ngIf="!auth.isAuthenticated">
+      <li class="nav-item" *ngIf="!authService.isAuthenticated">
         <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
       </li>
-      <li class="nav-item" *ngIf="auth.isAuthenticated">
-        <a class="nav-link" (click)="auth.logout()">Logout</a>
-      </li>
-      <li class="nav-item" *ngIf="auth.isAuthenticated">
+
+      <li class="nav-item" *ngIf="authService.isAuthenticated">
         <a class="nav-link" routerLink="/my-galeries" routerLinkActive="active">My Galeries</a>
       </li>
-      <li class="nav-item" *ngIf="auth.isAuthenticated">
+      <li class="nav-item" *ngIf="authService.isAuthenticated">
         <a class="nav-link" routerLink="/create" routerLinkActive="active">Create New Gallery</a>
       </li>
+      <li class="nav-item" *ngIf="authService.isAuthenticated">
+        <a class="nav-link" (click)="auth.logout()">Logout</a>
+      </li>      
     </ul>
+  <hr>
+    <app-filter (searchEvent)="getGalleries($event); clearView();"></app-filter> 
+  <hr>
 </nav>
 
 <div class="container">

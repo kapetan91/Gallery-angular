@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommentService } from '../../service/comment.service';
-import { AuthService } from '../../service/auth.service';
-import { User } from '../../shared/model/user.model';
+import { CommentService } from '../../../service/comment.service';
+import { AuthService } from '../../../service/auth.service';
+import { User } from '../../../shared/models/user.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-comment',
@@ -21,8 +22,8 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
 
-  	let id = parseInt(this.route.snapshot.paramMap.get('id'));
-  	this.commentService.getComments(id)
+  	let id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+  	this.commentService.gComments(id)
   	.subscribe(comments => {
   		this.comments = comments;
   	});
