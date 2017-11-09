@@ -13,15 +13,15 @@ export class RegisterComponent implements OnInit {
 
   @Output() onSubmit = new EventEmitter<User>();
 
-  private newUser = new User();
+  public user = new User();
 
   constructor(
     private authService: AuthService,
   	private router: Router) { }
 
-  register(newUser)
+  public register()
   {
-  this.authService.register(newUser)
+  this.authService.register(this.user)
     .subscribe(
         () => {
           this.router.navigateByUrl('/');

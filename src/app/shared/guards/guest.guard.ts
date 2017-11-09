@@ -15,9 +15,10 @@ export class GuestGuard implements CanActivate {
 		routerStateSnapshot: RouterStateSnapshot
 		) {
 		if (this.authService.isAuthenticated) {
-			this.router.navigate(['register']);
+			return true;
 		}
 
-		return true;
+		this.router.navigateByUrl('');
+		return false;
 	}
 }

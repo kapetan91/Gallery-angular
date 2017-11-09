@@ -11,7 +11,7 @@ import { GalleryService } from '../../../service/gallery.service';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-  public title = 'galeries';
+  public title = 'galleries';
   public galleries: any[]=[];
   public counter = 0;
   public numberOfGalleries;
@@ -56,8 +56,10 @@ export class GalleryComponent implements OnInit {
     }
 
     this.galleryService.getGallery()
+
       .subscribe(data => {
-        this.galleries.push(...(data.galleries));
+        this.galleries = data;
+        console.log(this.galleries);
         this.numberOfGalleries = data.count;
         this.skip += this.take;
     });

@@ -7,12 +7,12 @@ import { User } from '../shared/models/user.model';
 @Injectable()
 export class AuthService {
 
-	public isAuthenticated: boolean;
+  public isAuthenticated: boolean;
 
   public user: User[] = [];
 
   constructor(private http: HttpClient) {
-  	this.isAuthenticated = !!window.localStorage.getItem('loginToken');
+    this.isAuthenticated = !!window.localStorage.getItem('loginToken');
   }
 
   public getUser() 
@@ -22,26 +22,26 @@ export class AuthService {
 
   login(email: string, password: string)
   {
-  	return new Observable((o: Observer<any>) =>
-  	{
-  		this.http.post('http://localhost:8000/api/login', {
-  			'email': email,
-  			'password': password
-  		})
-  		.subscribe(
-  			(data: {token: string}) => {
-  				window.localStorage.setItem('loginToken', data.token);
-  				this.isAuthenticated = true;
+    return new Observable((o: Observer<any>) =>
+    {
+      this.http.post('http://localhost:8000/api/login', {
+        'email': email,
+        'password': password
+      })
+      .subscribe(
+        (data: {token: string}) => {
+          window.localStorage.setItem('loginToken', data.token);
+          this.isAuthenticated = true;
 
-  				o.next(data.token);
-  				return o.complete();
-  			},
-  			(err) => {
-  				//samo proslediti
-  				return o.error(err);
-  			}
-  		);
-  	});
+          o.next(data.token);
+          return o.complete();
+        },
+        (err) => {
+          //samo proslediti
+          return o.error(err);
+        }
+      );
+    });
   }
 
   public register(user: User)
@@ -69,13 +69,13 @@ export class AuthService {
 
   public getRequestHeaders()
   {
-  	return new HttpHeaders().set('Authorization', 'Bearer' + window.localStorage.getItem('loginToken'));
+    return new HttpHeaders().set('Authorization', 'Bearer' + window.localStorage.getItem('loginToken'));
 
   }
 
   public logout()
   {
-  	window.localStorage.removeItem('loginToken');
-  	this.isAuthenticated = false;
+    window.localStorage.removeItem('loginToken');
+    this.isAuthenticated = false;
   }
 }
