@@ -21,7 +21,8 @@ export class GalleryService {
         	.subscribe(
 				(galleries: any[]) => {
 					galleries.forEach(g => {
-						this.galleries.push(new Gallery(g.id, g.name, g.description));
+						console.log(g);
+						this.galleries.push(new Gallery(g.id, g.name, g.description, g.images, g.user));
 					});
 					o.next(this.galleries);
 					return o.complete();

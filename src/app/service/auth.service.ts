@@ -20,7 +20,7 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
-  login(email: string, password: string)
+  public login(email: string, password: string)
   {
     return new Observable((o: Observer<any>) =>
     {
@@ -44,7 +44,7 @@ export class AuthService {
     });
   }
 
-  public register(user: User)
+ public register(user: User)
   {
     return new Observable((o: Observer<any>) => {
       this.http.post('http://localhost:8000/api/register', {
@@ -61,9 +61,9 @@ export class AuthService {
           let newU = new User(u.id, u.first_name, u.last_name, u.email, u.password);
           this.user.push(newU);
           o.next(newU);
+          this.login(u.email, u.password);
                 return o.complete();
-              }
-            )
+              });
     });
   }
 

@@ -91,7 +91,7 @@
 		<label class="custom-control custom-checkbox">
 			<input #termsAndConditions="ngModel" [(ngModel)]="user.termsAndConditions" required type="checkbox" class="custom-control-input" name="terms-and-conditions">
 			<span class="custom-control-indicator"></span>
-			<span class="custom-control-description">Accept terms and conditions</span>
+			<span class="custom-control-description">Accept terms and conditions. </span>
 			<div *ngIf="termsAndConditions.invalid">
 				<span *ngIf=" termsAndConditions.errors.required ">
 					You must agree with out term and conditions 

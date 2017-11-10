@@ -44,7 +44,7 @@ export class GalleryComponent implements OnInit {
     }
 
     let currentRoute = this.router.url;
-    let id:number;
+    let id: number;
 
     if (currentRoute.includes('my-galleries')) {
       let user = this.authService.getUser();
@@ -59,7 +59,6 @@ export class GalleryComponent implements OnInit {
 
       .subscribe(data => {
         this.galleries = data;
-        console.log(this.galleries);
         this.numberOfGalleries = data.count;
         this.skip += this.take;
     });
