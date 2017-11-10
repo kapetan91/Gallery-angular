@@ -1,3 +1,35 @@
-<p>
-  gallery-view works!
+<section class="jumbotron text-center">
+  <h2 class="jumbotron-heading">
+    {{gallery.name}}
+    <a [hidden]="!authService.isAuthenticated ||  authService.isAuthenticated && user.id !== gallery.user_id" routerLink="/edit-gallery" class="btn btn-outline-primary">
+      Edit
+    </a>
+    <button [hidden]="!authService.isAuthenticated ||  authService.isAuthenticated && user.id !== gallery.user_id" class="btn btn-outline-danger">
+      Remove
+    </button>
+  </h2>
+</section>
+
+<small>
+  {{gallery.created_at | date:'mediumDate'}}
+</small>
+<small> 
+  <a routerLink="/authors/{{gallery.user ? gallery.user.id : ''}}">
+    {{ gallery.user ? gallery.user.first_name : ''}}
+  </a>
+</small>
+<hr>
+<p *ngIf="gallery.description">
+  {{gallery.description}}
 </p>
+
+<div class="album text-muted">
+  <div class="container">
+
+    <div *ngFor="let image of gallery.images; let i = index">
+      <img src="{{image.image_url}}"> 
+    </div>
+  </div>
+</div>
+
+<app-comment></app-comment>

@@ -2,7 +2,7 @@
 <div class="container marketing">
 	<div class="row"> 
 		<div class="col-lg-4 mt-4" *ngFor="let gallery of galleries">
-	    	<img class="rounded-circle" src="{{ gallery.images[0].image_url }}" width="140" height="140">
+	    	<img class="rounded-circle" src="{{ gallery.images[0].image_url }}" width="150" height="150">
 			<div class="mt-4">
 			    <a routerLink="/galleries/{{gallery.id}}">
 			    	{{ gallery.name }}
@@ -25,5 +25,4 @@
 </div>
 <hr>
 <button (click)="getGalleries()" class="btn btn-secondary" *ngIf="!term">Show more</button>
-
 
